@@ -3,11 +3,15 @@ require('dotenv').config({ silent: true });
 // require my dependencies
 const express = require('express'),
       logger = require('morgan'),
-      bodyParser = require('body-parser');
+      bodyParser = require('body-parser'),
+      helmet = require('helmet');
 
 
 //instantiate my app
 const app = express()
+//adding helmet for security layer
+app.use(helmet());
+
 
 //use my middlewares
 app.use(bodyParser.json())

@@ -3,6 +3,15 @@ const database = require('../db/dbConnection')
 
 module.exports={
   getAllCompanies: (req,res,next)=>{
+  // async (req,res,next)=>{
+  //   try{
+  //      const datafromquery = await database.any(`Select * from companies`)
+  //      res.companies = datafromquery
+  //       next()
+  //      }catch(err){
+  //         next(err)
+  //      }
+
     database.any(`Select * from companies`)
     .then((datafromquery)=>{
       res.companies = datafromquery
