@@ -6,22 +6,34 @@ companyRouter.route('/')
     const params = req.query;
     console.log('params',params)
     // res.send('this is the api result for companies')
-    res.status(200).json(res.companies || [])
+    res.status(200).json({
+      status: 'sucess',
+      data: res.companies || [],
+      message: 'Retrieved all Companies'
+    })
   })
-  .post((req,res,next)=>{
-    res.send('posted to companies')
+  .post(companyModel.addCompany, (req,res,next)=>{
+    res.json(res.id)
     next()
   })
 
 companyRouter.route('/:id')
-  .get((req,res,next)=>{
-    res.send('will get one company')
+  .get(companyModel.getACompany,(req,res,next)=>{
+    res.status(200).json(res.company || [])
   })
-  .put((req,res,next)=>{
-    res.send('updating one company')
+  .put(companyModel.editACompany,(req,res,next)=>{
+    res.status(200).json({
+      status: 'success',
+      data: res.result || [],
+      message: 'you have succesfully changed a company info'
+    })
   })
-  .delete((req,res,next)=>{
-    res.send('deleting one company')
+  .delete(companyModel.deleteCompany,(req,res,next)=>{
+    res.status(200).json({
+      status: 'success',
+      message: res.message
+
+    })
   })
 
 module.exports = companyRouter;

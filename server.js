@@ -1,3 +1,5 @@
+require('dotenv').config({ silent: true });
+
 // require my dependencies
 const express = require('express'),
       logger = require('morgan'),
